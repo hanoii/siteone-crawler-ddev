@@ -1,0 +1,3 @@
+[submodule "fork"]
+	path = fork
+	url = git@github.com:hanoii/siteone-crawler.git
