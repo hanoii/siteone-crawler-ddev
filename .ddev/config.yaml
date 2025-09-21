@@ -13,6 +13,7 @@ hooks:
     post-start:
         - exec: /var/www/html/.ddev/post-start.sh
 omit_containers: [db]
+webimage_extra_packages: [php8.1-swoole]
 use_dns_when_possible: true
 composer_root: fork/
 composer_version: "2"

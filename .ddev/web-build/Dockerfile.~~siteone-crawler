@@ -1,1 +1,0 @@
-COPY --from=siteone-crawler-ddev /opt/swoole-cli /opt/swoole-cli

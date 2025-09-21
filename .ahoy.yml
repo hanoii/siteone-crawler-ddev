@@ -5,7 +5,7 @@ commands:
     cmd: |
       mkdir -p /var/www/html/.siteone-crawler/reports
       mkdir -p /var/www/html/web
-      /var/www/html/fork/crawler \
+      php /var/www/html/fork/src/crawler.php \
         --result-storage-dir=/var/www/html/.siteone-crawler/result-storage \
         --output-json-file="" \
         --output-text-file="" \
@@ -18,7 +18,6 @@ commands:
     usage: Crawl dac.com
     cmd: |
       ahoy crawler \
-        --replace-query-string="/.*/ -> " \
         --offline-export-lowercase \
         --replace-content="/\/Portals\// -> /portals/" \
         --replace-content="/StandardMenu.css -> /standardmenu.css" \
