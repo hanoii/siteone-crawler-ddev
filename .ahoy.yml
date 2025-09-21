@@ -3,16 +3,15 @@ commands:
   crawler:
     usage: Crawl site using siteone-crawler
     cmd: |
-      mkdir -p /var/www/html/web/reports
-      mkdir -p /var/www/html/web/output
-      mkdir -p /var/www/html/.siteone-crawler
+      mkdir -p /var/www/html/.siteone-crawler/reports
+      mkdir -p /var/www/html/web
       /var/www/html/fork/crawler \
         --result-storage-dir=/var/www/html/.siteone-crawler/result-storage \
         --output-json-file="" \
         --output-text-file="" \
-        --output-html-report=/var/www/html/web/reports/%domain%.%datetime%.html \
+        --output-html-report=/var/www/html/.siteone-crawler/reports/%domain%.%datetime%.html \
         --http-cache-dir=/var/www/html/.siteone-crawler/http-cache \
-        --offline-export-dir=/var/www/html/web/output \
+        --offline-export-dir=/var/www/html/web \
         "$@"
 
   dac:
