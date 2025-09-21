@@ -9,6 +9,9 @@ additional_fqdns: []
 database:
     type: mariadb
     version: "10.11"
+hooks:
+    post-start:
+        - exec: /var/www/html/.ddev/post-start.sh
 omit_containers: [db]
 use_dns_when_possible: true
 composer_root: fork/

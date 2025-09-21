@@ -1,0 +1,13 @@
+FROM pimp-my-shell-base AS siteone-crawler-ddev
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+set -eux
+SWOOLE_VERSION=6.0.1.0
+AARCH=$(uname -m)
+AARCH=${AARCH/aarch64/arm64}
+AARCH=${AARCH/x86_64/x64}
+mkdir -p /opt/swoole-cli
+curl-pimp-my-shell -o swoole-cli.tar.xz https://github.com/swoole/swoole-cli/releases/download/v${SWOOLE_VERSION}/swoole-cli-v${SWOOLE_VERSION%.0}-linux-{$AARCH}.tar.xz
+tar -xf swoole-cli.tar.xz -C /opt/swoole-cli
+rm swoole-cli.tar.xz
+EOF
