@@ -1,0 +1,28 @@
+ahoyapi: v2
+commands:
+  crawler:
+    usage: Crawl site using siteone-crawler
+    cmd: |
+      mkdir -p /var/www/html/web/reports
+      mkdir -p /var/www/html/web/output
+      mkdir -p /var/www/html/.siteone-crawler
+      /var/www/html/fork/crawler \
+        --result-storage-dir=/var/www/html/.siteone-crawler/result-storage \
+        --output-json-file="" \
+        --output-text-file="" \
+        --output-html-report=/var/www/html/web/reports/%domain%.%datetime%.html \
+        --http-cache-dir=/var/www/html/.siteone-crawler/http-cache \
+        --offline-export-dir=/var/www/html/web/output \
+        "$@"
+
+  dac:
+    usage: Crawl dac.com
+    cmd: |
+      ahoy crawler \
+        --replace-query-string="/.*/ -> " \
+        --offline-export-lowercase \
+        --replace-content="/\/Portals\// -> /portals/" \
+        --replace-content="/StandardMenu.css -> /standardmenu.css" \
+        --replace-content="/SideMenu.css -> /sidemenu.css" \
+        --url=https://www.dac.com \
+        "$@"
