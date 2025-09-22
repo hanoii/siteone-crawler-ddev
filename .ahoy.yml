@@ -1,11 +1,16 @@
 ahoyapi: v2
 commands:
   crawler:
+    usage: Execut crwaler with php cli instead of swoole-cli
+    cmd: |
+      php /var/www/html/fork/src/crawler.php "$@"
+
+  crawl:
     usage: Crawl site using siteone-crawler
     cmd: |
       mkdir -p /var/www/html/.siteone-crawler/reports
       mkdir -p /var/www/html/web
-      php /var/www/html/fork/src/crawler.php \
+      ahoy crawler \
         --result-storage-dir=/var/www/html/.siteone-crawler/result-storage \
         --output-json-file="" \
         --output-text-file="" \
@@ -17,10 +22,16 @@ commands:
   dac:
     usage: Crawl dac.com
     cmd: |
-      ahoy crawler \
+      ahoy crawl\
         --offline-export-lowercase \
+        --offline-export-no-auto-redirect-html \
         --replace-content="/\/Portals\// -> /portals/" \
         --replace-content="/StandardMenu.css -> /standardmenu.css" \
         --replace-content="/SideMenu.css -> /sidemenu.css" \
+        --replace-content="skeleton.css?v='+ version_date.getMonth() + '.' + version_date.getDate() + '-' + Math.floor(Math.random() * 1000) +' -> skeleton.27e842049f.css" \
+        --replace-content="layout.css?v='+ version_date.getMonth() + '.' + version_date.getDate() + '-' + Math.floor(Math.random() * 1000) +' -> layout.27e842049f.css" \
+        --replace-content="styles24.css?v='+ version_date.getMonth() + '.' + version_date.getDate() + '-' + Math.floor(Math.random() * 1000) +' -> styles24.27e842049f.css" \
+        --replace-content="standardmenu.css?v='+ version_date.getMonth() + '.' + version_date.getDate() + '-' + Math.floor(Math.random() * 1000) +' -> standardmenu.27e842049f.css" \
+        --replace-content="sidemenu.css?v='+ version_date.getMonth() + '.' + version_date.getDate() + '-' + Math.floor(Math.random() * 1000) +' -> sidemenu.27e842049f.css" \
         --url=https://www.dac.com \
         "$@"
