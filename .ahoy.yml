@@ -23,8 +23,13 @@ commands:
     usage: Crawl dac.com
     cmd: |
       ahoy crawl\
+        --offline-export-remove-unwanted-code=0 \
+        --max-non200-responses-per-basename=100 \
+        --allowed-domain-for-crawling=ww.dac.com \
+        --transform-url="/^ww\.dac\.com/ -> www.dac.com" \
+        --memory-limit=4096M \
+        --timeout=1200 \
         --offline-export-lowercase \
-        --offline-export-no-auto-redirect-html \
         --replace-content="/\/Portals\// -> /portals/" \
         --replace-content="/StandardMenu.css -> /standardmenu.css" \
         --replace-content="/SideMenu.css -> /sidemenu.css" \
